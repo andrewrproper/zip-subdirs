@@ -21,6 +21,7 @@ First install [DWIMPerl](http://dwimperl.com).
   - If you cant get [DWIMPerl](http://dwimperl.com), Strawberry Perl may work.
 
 After that is installed, you can run the ```zip-subdirs``` shortcut to start.
+If the shortcut fails, try running the ```zip-subdirs.bat``` batch file.
 
 If you have problems, try running ```zip-subdirs-debug.bat``` to see any
 debug or error output (in the black command prompt window).
@@ -73,7 +74,8 @@ This screenshot shows a resulting zip file opened in 7zip.
 
 ## Configuration
 
-The config file is ```connfig.yaml```. 
+The config file is ```connfig.yaml```.  It is a plain text file and can
+be editing with Notepad, gVim, etc.
 
 It is in [YAML](http://yaml.org/) format, which is white space sensitive. So don't
 change the white space, only change the values.
