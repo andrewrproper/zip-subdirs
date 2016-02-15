@@ -7,9 +7,6 @@
 <p><em>Copyright <a href="https://endosynth.wordpress.com/">Andrew Proper</a> 2016.</em></p>
 <p>Tested on Windows 7, 8, 10.</p>
 <p><a href="https://endosynth.wordpress.com/category/zip-subdirs/">Zip-Subdirs News Online</a></p>
-<h2 id="purpose">Purpose</h2>
-<p>Allows the user to select a directory, then displays the list of subdirectories under that directory. The user can select one or more (Ctrl-click) subdirectories to zip, then press the Zip button.</p>
-<p>Subdirectories will be zipped in the order they are listed. Each one will be zipped into a timestamped zip file. Insize the zip file, the top-level item will be the subdirectory with a timestamp appended.</p>
 <h2 id="install">Install</h2>
 <p>First install <a href="http://dwimperl.com">DWIMPerl</a>.</p>
 <ul>
@@ -18,6 +15,40 @@
 </ul>
 <p>After that is installed, you can run the <code>zip-subdirs</code> shortcut to start.</p>
 <p>If you have problems, try running <code>zip-subdirs-debug.bat</code> to see any debug or error output (in the black command prompt window).</p>
+<h2 id="purpose">Purpose</h2>
+<p>Allows the user to select a directory, then displays the list of subdirectories under that directory. The user can select one or more (Ctrl-click) subdirectories to zip, then press the Zip button.</p>
+<p>Subdirectories will be zipped in the order they are listed. Each one will be zipped into a timestamped zip file. Insize the zip file, the top-level item will be the subdirectory with a timestamp appended.</p>
+<h2 id="how-to-use">How to Use</h2>
+<p>First, select a parent directory using the &quot;Browse&quot; button. This should then display a list of sub-directories in the text area below the &quot;Browse&quot; button. These are directories inside of the parent directory.</p>
+<div class="figure">
+<img src="screenshots/main-window.png" alt="Main Window" />
+<p class="caption">Main Window</p>
+</div>
+<p>Next, select one or more sub-directories to copy into archive zip files. You can select only one, or some, or all of them.</p>
+<p>After that, click the &quot;create a zip of each selected path&quot; button. Results of zipping will be shown in the bottom text area. Directories will be zipped one by one. Each resulting zip file will have a timestamp added to the end of the file name, and will contain the zipped directory with the timestamp added to the end of its name.</p>
+<div class="figure">
+<img src="screenshots/created-2-zips.png" alt="Created some zips" />
+<p class="caption">Created some zips</p>
+</div>
+<p>The timestamps make this useful for backing up timestamped zips of directories. They are also helpful for extracting/unzipping, because when you extract the zip file with paths enabled, the top directory will have a timestamp on it. This way, you can archive the same directory multiple times, and extract the archives, without the extracted archives overiting each others' directories.</p>
+<p>This screenshot shows a resulting zip file opened in 7zip.</p>
+<div class="figure">
+<img src="screenshots/archive-shown-in-7zip.png" alt="Archive shown in 7zip" />
+<p class="caption">Archive shown in 7zip</p>
+</div>
+<h2 id="configuration">Configuration</h2>
+<p>The config file is <code>connfig.yaml</code>.</p>
+<p>It is in <a href="http://yaml.org/">YAML</a> format, which is white space sensitive. So don't change the white space, only change the values.</p>
+<p>The following options exist:</p>
+<ul>
+<li>get_tree_du_max_ms : 5000
+<ul>
+<li>this is how long, in milliseconds, to wait to load disk usage per subdirectory. If loading takes too long, it will be stopped and a &quot;+&quot; sign will be shown beside the shown directory size.</li>
+<li>the value, 5000, means 5000 milliseconds, or 0.5 seconds.</li>
+<li>some computers are faster at loading disk usage than others.</li>
+<li>if your computer is slow to load the subdirectories list, change this to a smaller number to speed up the loading.</li>
+</ul></li>
+</ul>
 <h2 id="compiling-to-exe">Compiling to Exe</h2>
 <p>You will need to install the <strong>PAR::Packer</strong> CPAN module into DWIMPerl, using its cpan interface. This basically involves opening a Windows command prompt and running:</p>
 <pre><code>cpan
