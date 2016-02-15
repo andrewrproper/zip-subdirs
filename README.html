@@ -1,0 +1,25 @@
+<div class="figure">
+<img src="resources/zip-subdirs-icon-export.ico" alt=" " />
+<p class="caption"> </p>
+</div>
+<h1 id="zip-subdirs">Zip Subdirs</h1>
+<p><em>Copyright <a href="https://endosynth.wordpress.com/">Andrew Proper</a> 2016.</em></p>
+<p>Tested on Windows 7, 8, 10.</p>
+<p><a href="https://endosynth.wordpress.com/category/zip-subdirs/">Zip-Subdirs News Online</a></p>
+<h2 id="purpose">Purpose</h2>
+<p>Allows the user to select a directory, then displays the list of subdirectories under that directory. The user can select one or more (Ctrl-click) subdirectories to zip, then press the Zip button.</p>
+<p>Subdirectories will be zipped in the order they are listed. Each one will be zipped into a timestamped zip file. Insize the zip file, the top-level item will be the subdirectory with a timestamp appended.</p>
+<h2 id="install">Install</h2>
+<p>First install <a href="http://dwimperl.com">DWIMPerl</a>.</p>
+<ul>
+<li>This was tested with <a href="http://dwimperl.com">DWIMPerl</a> v5.14.2.1 v7 32 bit for Windows.</li>
+<li>If you cant get <a href="http://dwimperl.com">DWIMPerl</a>, Strawberry Perl may work.</li>
+</ul>
+<p>After that is installed, you can run the <code>zip-subdirs</code> shortcut to start.</p>
+<p>If you have problems, try running <code>zip-subdirs-debug.bat</code> to see any debug or error output (in the black command prompt window).</p>
+<h2 id="compiling-to-exe">Compiling to Exe</h2>
+<p>You will need to install the <strong>PAR::Packer</strong> CPAN module into DWIMPerl, using its cpan interface. This basically involves opening a Windows command prompt and running:</p>
+<pre><code>cpan
+&gt; install PAR::Packer</code></pre>
+<p>After that, you can run <code>compile_to_exe.bat</code> to create a .exe file from the .pl file.</p>
+<p>Note that this essentially just creates a zip of the perl code which can extract and run itself. It may not be better or faster than running the .pl file directly via its .bat file.</p>

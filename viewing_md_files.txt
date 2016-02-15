@@ -1,0 +1,16 @@
+
+VIEWING MARKDOWN FILES (.md)
+
+To view markdown (.md) files, you can install a web 
+browser plugin such as "Markdown Preview Plus" for Chrome.
+
+With Chrome, you then have to go to Tools -> Extensions
+and check "Allow access to file URLs" for the plugin.
+
+After that, you can open a new tab in Chrome and drag and 
+drop the .md file onto the tab. It will render it as an
+HTML page, with headings and links styled.  
+
+You can also install a program such as Pandoc to 
+convert markdown files to other formats, such as HTML.
+
