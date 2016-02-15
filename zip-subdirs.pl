@@ -18,6 +18,8 @@ use Archive::Zip 1.30;
 use File::Spec 3.33;
 use File::Find 1.19;
 use POSIX 1.24;
+use Time::HiRes 1.9724;
+use YAML 0.77;
 
 use lib File::Spec->catfile( $FindBin::Bin, 'lib' );
 use Number::Bytes::Human 0.09;
@@ -25,8 +27,27 @@ use Number::Bytes::Human 0.09;
 package MyApp;
 use base 'Wx::App';
 
+my $config_fn = $FindBin::Bin.'/config.yaml';
+
+my %config = ();
+eval {
+	my $config_ref = YAML::LoadFile( $config_fn );
+	if ( ref $config_ref eq 'HASH' ) {
+		%config = %$config_ref;
+	}
+};
+my $e = $@;
+if ( $e ) {
+	chomp $e;
+	say 'ERROR - failed to load config, using defaults';
+	say 'ERROR - yaml error: '.$e;
+}
+
 #my $regex_is_2notbackup = qr{2notbackup};
-my $get_tree_du_max_secs = 1;
+
+say 'DEBUG - config{get_tree_du_max_ms}: '.( $config{get_tree_du_max_ms} || '' );
+my $get_tree_du_max_ms = $config{get_tree_du_max_ms} || 3000;
+
 my $dir_size_run_start_ut = time();
 my $dir_size_started_run = 0;
 my $generic_filter_file_count = 0;
@@ -68,6 +89,14 @@ sub OnInit {
 	$sizer->Add( $head_bar, 1, &Wx::wxEXPAND );
 	my $web_url = 'https://endosynth.wordpress.com/category/zip-subdirs/';
 	$head_bar->SetStatusText( '  zip-subdirs - created by Andrew Proper 2016 - '.$web_url );
+
+	my $help_bar = Wx::StatusBar->new(
+		$self->{frame},
+		-1,
+	);
+	$sizer->Add( $help_bar, 1, &Wx::wxEXPAND );
+	$help_bar->SetStatusText( '      For help, see README.html' );
+
 
 
 	my $win_home = $ENV{HOMEDRIVE}.$ENV{HOMEPATH};
@@ -360,7 +389,7 @@ sub _get_tree_du_bytes {
 	my $self = shift;
 	my $path = shift;
 
-	my $start_ut = time();
+	my ( $start_secs, $start_ms ) = Time::HiRes::gettimeofday();
 
 	my $prefix = '[tree_du] ';
 
@@ -373,10 +402,11 @@ sub _get_tree_du_bytes {
 		FIND_SIZE: {
 			File::Find::find(
 				sub {
-					my $elapsed_secs = time() - $start_ut;
-					if ( $elapsed_secs > $get_tree_du_max_secs ) { # if reading has taken more than these many seconds
+					my ( $now_secs, $now_ms ) = Time::HiRes::gettimeofday();
+					my $elapsed_ms   = $now_ms   - $start_ms;
+					if ( $elapsed_ms > $get_tree_du_max_ms ) { # if reading has taken more than these many seconds
 						$aborted = 1;
-						Wx::wxLogWarning( 'too long to read size ['.$elapsed_secs.' s] abort: '.$path );
+						say 'WARNING - too long to read size ['.$elapsed_ms.' ms] abort: '.$path;
 						last FIND_SIZE; # exit out of File::Find::find
 					}
 

@@ -13,16 +13,6 @@ Tested on Windows 7, 8, 10.
 
 
 
-## Purpose
-
-Allows the user to select a directory, then displays the list of
-subdirectories under that directory. The user can select one or
-more (Ctrl-click) subdirectories to zip, then press the Zip button.
-
-Subdirectories will be zipped in the order they are listed. Each
-one will be zipped into a timestamped zip file. Insize the zip file,
-the top-level item will be the subdirectory with a timestamp appended.
-
 ## Install
 
 First install [DWIMPerl](http://dwimperl.com).
@@ -34,6 +24,71 @@ After that is installed, you can run the ```zip-subdirs``` shortcut to start.
 
 If you have problems, try running ```zip-subdirs-debug.bat``` to see any
 debug or error output (in the black command prompt window).
+
+
+
+
+## Purpose
+
+Allows the user to select a directory, then displays the list of
+subdirectories under that directory. The user can select one or
+more (Ctrl-click) subdirectories to zip, then press the Zip button.
+
+Subdirectories will be zipped in the order they are listed. Each
+one will be zipped into a timestamped zip file. Insize the zip file,
+the top-level item will be the subdirectory with a timestamp appended.
+
+## How to Use
+
+First, select a parent directory using the "Browse" button. This should
+then display a list of sub-directories in the text area below the "Browse" button.
+These are directories inside of the parent directory.
+
+![Main Window](screenshots/main-window.png)
+
+
+Next, select one or more sub-directories to copy into archive zip files. You can
+select only one, or some, or all of them.
+
+After that, click the "create a zip of each selected path" button. Results of 
+zipping will be shown in the bottom text area. Directories will be zipped one
+by one. Each resulting zip file will have a timestamp added to the end of 
+the file name, and will contain the zipped directory with the timestamp added to
+the end of its name.
+
+![Created some zips](screenshots/created-2-zips.png)
+
+The timestamps make this useful for backing up timestamped zips of directories.
+They are also helpful for extracting/unzipping, because when you extract the
+zip file with paths enabled, the top directory will have a timestamp on it. This 
+way, you can archive the same directory multiple times, and extract the archives,
+without the extracted archives overiting each others' directories.
+
+This screenshot shows a resulting zip file opened in 7zip.
+
+![Archive shown in 7zip](screenshots/archive-shown-in-7zip.png)
+
+
+
+
+## Configuration
+
+The config file is ```connfig.yaml```. 
+
+It is in [YAML](http://yaml.org/) format, which is white space sensitive. So don't
+change the white space, only change the values.
+
+The following options exist:
+
+  - get_tree_du_max_ms : 5000
+    - this is how long, in milliseconds, to wait to load 
+	  disk usage per subdirectory. If loading takes too long, it will
+	  be stopped and a "+" sign will be shown beside the shown directory
+	  size.
+	- the value, 5000, means 5000 milliseconds, or 0.5 seconds.
+	- some computers are faster at loading disk usage than others.
+	  - if your computer is slow to load the subdirectories list,
+	    change this to a smaller number to speed up the loading.
 
 
 ## Compiling to Exe
