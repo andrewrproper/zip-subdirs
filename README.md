@@ -1,13 +1,17 @@
 
 ![&nbsp;](resources/zip-subdirs-icon-export.ico)
 
-# Zip Subdirs
+# Zip Subdirs Version 0.1.0
+
+February 15, 2016
 
 *Copyright [Andrew Proper](https://endosynth.wordpress.com/) 2016.*
 
 Tested on Windows 7, 8, 10.
 
 [Zip-Subdirs News Online](https://endosynth.wordpress.com/category/zip-subdirs/)
+
+
 
 ## Purpose
 
