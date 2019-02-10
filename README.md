@@ -5,17 +5,14 @@
 
 February 15, 2016
 
-*Copyright [Andrew Proper](https://endosynth.wordpress.com/) 2016.*
-*[andrewrproper@gmail.com](mailto: andrewrproper@gmail.com)*
+*Copyright 2016 Andrew R. Proper.*
 
 Tested on Windows 7, 8, 10.
-
-[Zip-Subdirs News Online](https://endosynth.wordpress.com/category/zip-subdirs/)
 
 
 ## Problems and Features
 
-Please report any problems any feature requests on the [issues page](https://github.com/endosynth/zip-subdirs/issues).
+Please report any problems any feature requests on the [issues page](https://github.com/andrewrproper/zip-subdirs/issues).
 
 Please create one issue per problem or feature, for easier tracking.
 
